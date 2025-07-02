@@ -1,18 +1,19 @@
-from core_data.size import CreatureSize
-from core_data.type import CreatureType
+from core_data.creature_size import CreatureSize
+from core_data.creature_type import CreatureType
 from core_data.alignment import CreatureAlignmentLawfulChaotic
 from core_data.alignment import CreatureAlignmentGoodEvil
+
+from actors.actions.base_action import Action
 
 class Actor:
     # Name and Typing
     name: str = ""
     size: CreatureSize
-    type: CreatureType
-    alignment: [CreatureAlignmentLawfulChaotic, CreatureAlignmentGoodEvil]
+    creature_type: CreatureType
+    alignment: [CreatureAlignmentLawfulChaotic, CreatureAlignmentGoodEvil] or None = None
 
     # Basics
     max_hp: int
-    hit_dice_size: int
     speed: int
 
     # Stats
@@ -23,6 +24,9 @@ class Actor:
     wisdom: int
     charisma: int
 
+    # Actions
+    actions: [Action]
+
     # Dynamic Values
     current_hp: int
 
@@ -30,10 +34,9 @@ class Actor:
             self,
             name: str,
             size: CreatureSize = CreatureSize.MEDIUM,
-            type: CreatureType = CreatureType.OTHER,  # noqa
-            alignment=None,
+            creature_type: CreatureType = CreatureType.OTHER,  # noqa
+            alignment:[CreatureAlignmentLawfulChaotic, CreatureAlignmentGoodEvil] or None = None,
             max_hp: int = 1,
-            hit_dice_size: int = 6,
             speed: int = 30,
             strength: int = 10,
             dexterity: int = 10,
@@ -42,15 +45,11 @@ class Actor:
             wisdom: int = 10,
             charisma: int = 10
     ):
-        if alignment is None:
-            self.alignment = [
-                CreatureAlignmentLawfulChaotic.NEUTRAL, CreatureAlignmentGoodEvil.NEUTRAL
-            ]
         self.name = name
         self.size = size
-        self.type = type
+        self.type = creature_type
+        self.alignment = alignment
         self.max_hp = max_hp
-        self.hit_dice_size = hit_dice_size
         self.speed = speed
         self.strength = strength
         self.dexterity = dexterity
