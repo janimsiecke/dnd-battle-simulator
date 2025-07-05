@@ -1,0 +1,8 @@
+{
+  "board_width": 10,
+  "board_height": 5,
+  "board_impassable": [[2, 0], [3, 0]],
+  "board_player_placement": [],
+  "board_ally_placement": [["Wolf B", [4, 2]]],
+  "board_enemy_placement": [["Wolf A", [5, 2]]]
+}

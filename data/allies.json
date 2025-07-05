@@ -1,3 +1,6 @@
 {
-  "Wolf B": "wolf"
+  "Wolf B": {
+    "type": "monster_preset",
+    "name": "wolf"
+  }
 }
