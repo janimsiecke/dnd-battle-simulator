@@ -6,4 +6,5 @@ class AttackTypes(Enum):
     MELEE_SPELL_ATTACK = 'melee spell attack',
     RANGED_SPELL_ATTACK = 'ranged spell attack',
     UNARMED_STRIKE = 'unarmed strike',
-    NATURAL_WEAPON_ATTACK = 'natural weapon attack'
+    NATURAL_WEAPON_ATTACK = 'natural weapon attack',
+    SPELL = 'spell'

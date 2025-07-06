@@ -11,13 +11,12 @@ class Game:
     players: {}
     allies: {}
     enemies: {}
+    initiative: [(int, str)]
     def __init__(self):
         self.__get_board()
         self.__get_actors()
         self.__populate_board()
-        self.board.present_board()
-        self.board.move_actor('Wolf A', (3, 2))
-        self.board.present_board()
+        self.__get_initiative()
 
     def __get_board(self):
         self.board = import_board()
@@ -64,3 +63,18 @@ class Game:
         for enemy in enemy_list:
             self.enemies[enemy[0]] = enemy[1]
         LOGGER.debug(f'Enemies imported: {self.enemies}')
+
+    def __get_initiative(self):
+        self.initiative = []
+        for key, player in self.players.items():
+            self.initiative.append((player.get_initiative(), key))
+        for key, ally in self.allies.items():
+            self.initiative.append((ally.get_initiative(), key))
+        for key, enemy in self.enemies.items():
+            self.initiative.append((enemy.get_initiative(), key))
+        self.initiative = sorted(
+            self.initiative,
+            key=lambda x: x[0],
+            reverse=True
+        )
+        LOGGER.debug(f"Initiative: {self.initiative}")

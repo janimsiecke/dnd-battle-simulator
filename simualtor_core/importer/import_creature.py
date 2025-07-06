@@ -2,11 +2,10 @@ import json
 from copy import deepcopy as dc
 
 from simualtor_core.game.sim_logging import LOGGER
-from simualtor_core.actors.monster import Monster
 from simualtor_core.actors.base_actor import Actor
 from simualtor_core.actors.monster_library import MONSTER_LIBRARY
 
-def get_monster_from_library(monster_name: str) -> Monster | None:
+def get_monster_from_library(monster_name: str) -> Actor | None:
     try:
         return dc(MONSTER_LIBRARY[monster_name])
     except ValueError:
